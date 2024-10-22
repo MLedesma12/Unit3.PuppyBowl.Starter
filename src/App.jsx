@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Provider } from "react-redux";
-import store from "./store/store";
+import store from "./app/store";
 
 import PuppyDetails from "./features/puppies/PuppyDetails";
 import PuppyList from "./features/puppies/PuppyList";
@@ -21,13 +21,13 @@ export default function App() {
   return (
     <Provider store={store}>
       <h1>Puppy Bowl</h1>
-      <PuppyForm />
+      {/* <PuppyForm /> */}
       <main>
         <PuppyList setSelectedPuppyId={setSelectedPuppyId} />
-        <PuppyDetails
+        {/* <PuppyDetails
           selectedPuppyId={selectedPuppyId}
           setSelectedPuppyId={setSelectedPuppyId}
-        />
+        /> */}
       </main>
     </Provider>
   );

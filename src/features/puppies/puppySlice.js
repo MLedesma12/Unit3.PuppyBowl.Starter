@@ -1,4 +1,4 @@
-import api from "../../store/api";
+import puppyBowlApi from "../../api/puppyBowlApi";
 
 /*
 TODO: Define the following 4 endpoints:
@@ -14,8 +14,33 @@ The mutation endpoints should invalidate the "Puppy" tag.
 functions for each endpoint.
 */
 
-const puppyApi = api.injectEndpoints({
-  endpoints: (build) => ({}),
+const puppyApi = puppyBowlApi.injectEndpoints({
+  endpoints: (build) => ({
+    getPuppies: build.query({
+      query: () => "/players",
+      providesTags: ["Puppy"],
+    }),
+    getPuppy: build.query({
+      query: (id) => `player/${id}`,
+      providesTags: ["Puppy"],
+    }),
+    addPuppy: build.mutation({
+      query: (body) => ({
+        url: "/players",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Puppy"],
+    }),
+    deletePuppy: build.mutation({
+      query: (body) => ({
+        url: `players/${body.id}`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Puppy"],
+    }),
+  }),
 });
 
 export const {
